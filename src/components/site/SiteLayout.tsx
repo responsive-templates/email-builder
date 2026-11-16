@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { toAppUrl } from '../../seo/metadata';
 import { TEMPLATE_CATEGORIES } from '../../templates';
 
@@ -25,8 +25,10 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
           e.preventDefault();
           onNavigate(path);
         }}
-        className={`text-sm font-medium transition-colors ${
-          active ? 'text-indigo-600' : 'text-slate-600 hover:text-slate-900'
+        className={`text-sm font-medium whitespace-nowrap transition-colors underline-offset-4 ${
+          active
+            ? 'text-ink underline decoration-accent decoration-2'
+            : 'text-ink-2 hover:text-ink hover:underline decoration-accent'
         }`}
       >
         {label}
@@ -35,48 +37,52 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-      <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+    <div className="min-h-screen flex flex-col bg-paper text-ink-2">
+      {/* Top Almanac Masthead */}
+      <header className="sticky top-0 z-30 bg-sheet border-b-2 border-ink">
+        <div className="max-w-[1380px] mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-6">
           <a
             href={toAppUrl('/')}
             onClick={(e) => {
               e.preventDefault();
               onNavigate('/');
             }}
-            className="flex items-center gap-2.5 text-slate-900"
+            className="flex items-center gap-3 text-ink no-underline shrink-0"
           >
-            <span className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-sm">
-              <Sparkles className="w-4 h-4" />
+            <span
+              className="w-2.5 h-6 bg-accent inline-block"
+              aria-hidden="true"
+            />
+            <span className="font-display font-semibold text-base tracking-tight">
+              EmailBuilder
             </span>
-            <span className="font-display font-bold text-base tracking-tight">EmailBuilder</span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-7" aria-label="Primary">
             {navLink('/templates/', 'Templates')}
             {navLink('/html-email-builder/', 'HTML Builder')}
             {navLink('/drag-and-drop-email-builder/', 'Drag & Drop')}
             {navLink('/newsletter-builder/', 'Newsletters')}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4 shrink-0">
             <a
               href={toAppUrl('/templates/')}
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate('/templates/');
               }}
-              className="md:hidden text-sm font-medium text-slate-600 hover:text-slate-900"
+              className="md:hidden text-sm font-medium text-ink-2 hover:text-ink whitespace-nowrap"
             >
               Templates
             </a>
             <button
               type="button"
               onClick={onStartBuilding}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-[2px] bg-accent hover:bg-accent-2 text-accent-ink font-display text-sm font-medium whitespace-nowrap transition-colors cursor-pointer"
             >
               <span>Start Building</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -84,26 +90,27 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 
       <main className="flex-1">{children}</main>
 
-      <footer className="bg-white border-t border-slate-200 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* Almanac Mast Footer */}
+      <footer className="bg-paper-2 border-t-2 border-ink mt-20">
+        <div className="max-w-[1380px] mx-auto px-4 sm:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
-                <Sparkles className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-2.5 mb-3">
+              <span className="w-2 h-5 bg-accent inline-block" aria-hidden="true" />
+              <span className="font-display font-semibold text-base text-ink">
+                Free Email Builder
               </span>
-              <span className="font-display font-bold text-sm">Free Email Builder</span>
             </div>
-            <p className="text-xs text-slate-500 leading-relaxed">
-              Build responsive HTML emails visually with drag &amp; drop. Export clean table-based
-              HTML for free—no signup required.
+            <p className="text-sm text-muted leading-relaxed max-w-xs">
+              Visual HTML email editor with 20 responsive templates, local browser persistence, and
+              table-based HTML export.
             </p>
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-              Email Tools
+            <h3 className="text-sm font-medium text-muted mb-3 pb-2 border-b border-rule">
+              Email tools
             </h3>
-            <ul className="space-y-2 text-sm text-slate-600">
+            <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href={toAppUrl('/')}
@@ -111,7 +118,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
                     e.preventDefault();
                     onNavigate('/');
                   }}
-                  className="hover:text-indigo-600"
+                  className="text-ink-2 hover:text-ink underline-offset-4 hover:underline decoration-accent"
                 >
                   Free Email Builder
                 </a>
@@ -123,7 +130,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
                     e.preventDefault();
                     onNavigate('/html-email-builder/');
                   }}
-                  className="hover:text-indigo-600"
+                  className="text-ink-2 hover:text-ink underline-offset-4 hover:underline decoration-accent"
                 >
                   HTML Email Builder
                 </a>
@@ -135,7 +142,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
                     e.preventDefault();
                     onNavigate('/drag-and-drop-email-builder/');
                   }}
-                  className="hover:text-indigo-600"
+                  className="text-ink-2 hover:text-ink underline-offset-4 hover:underline decoration-accent"
                 >
                   Drag and Drop Email Builder
                 </a>
@@ -147,7 +154,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
                     e.preventDefault();
                     onNavigate('/email-template-builder/');
                   }}
-                  className="hover:text-indigo-600"
+                  className="text-ink-2 hover:text-ink underline-offset-4 hover:underline decoration-accent"
                 >
                   Email Template Builder
                 </a>
@@ -159,7 +166,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
                     e.preventDefault();
                     onNavigate('/newsletter-builder/');
                   }}
-                  className="hover:text-indigo-600"
+                  className="text-ink-2 hover:text-ink underline-offset-4 hover:underline decoration-accent"
                 >
                   Newsletter Builder
                 </a>
@@ -168,10 +175,10 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-              Template Categories
+            <h3 className="text-sm font-medium text-muted mb-3 pb-2 border-b border-rule">
+              Template categories
             </h3>
-            <ul className="space-y-2 text-sm text-slate-600">
+            <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href={toAppUrl('/templates/')}
@@ -179,7 +186,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
                     e.preventDefault();
                     onNavigate('/templates/');
                   }}
-                  className="hover:text-indigo-600"
+                  className="text-ink-2 hover:text-ink underline-offset-4 hover:underline decoration-accent"
                 >
                   All Templates (20)
                 </a>
@@ -192,7 +199,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
                       e.preventDefault();
                       onNavigate(`/templates/${cat.slug}/`);
                     }}
-                    className="hover:text-indigo-600"
+                    className="text-ink-2 hover:text-ink underline-offset-4 hover:underline decoration-accent"
                   >
                     {cat.name}
                   </a>
@@ -202,10 +209,10 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-              More Templates
+            <h3 className="text-sm font-medium text-muted mb-3 pb-2 border-b border-rule">
+              More templates
             </h3>
-            <ul className="space-y-2 text-sm text-slate-600">
+            <ul className="space-y-2 text-sm">
               {TEMPLATE_CATEGORIES.slice(4).map((cat) => (
                 <li key={cat.slug}>
                   <a
@@ -214,7 +221,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
                       e.preventDefault();
                       onNavigate(`/templates/${cat.slug}/`);
                     }}
-                    className="hover:text-indigo-600"
+                    className="text-ink-2 hover:text-ink underline-offset-4 hover:underline decoration-accent"
                   >
                     {cat.name}
                   </a>
@@ -223,9 +230,10 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
             </ul>
           </div>
         </div>
-        <div className="border-t border-slate-100 py-5 text-center text-xs text-slate-400">
-          Free Email Builder &bull; Table-based HTML export &bull; Local browser storage &bull; No
-          signup required
+
+        <div className="border-t border-rule py-5 px-4 sm:px-8 max-w-[1380px] mx-auto flex flex-wrap items-center justify-between gap-4 text-xs text-muted">
+          <span>Free Email Builder</span>
+          <span>Table-based HTML export, local browser storage, no signup required.</span>
         </div>
       </footer>
     </div>

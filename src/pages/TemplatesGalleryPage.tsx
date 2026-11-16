@@ -40,17 +40,17 @@ export const TemplatesGalleryPage: React.FC<TemplatesGalleryPageProps> = ({
   }, [categorySlug, query]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    <div className="max-w-[1380px] mx-auto px-4 sm:px-8 py-12">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 mb-8 border-b-2 border-ink">
         <div>
-          <span className="inline-block text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
-            {categoryInfo ? categoryInfo.name : 'Responsive Email Templates'}
+          <span className="block text-xs text-muted mb-1.5">
+            {categoryInfo ? categoryInfo.name : 'Responsive email templates'}
           </span>
-          <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-slate-900">
+          <h1 className="font-display font-semibold text-3xl sm:text-4xl text-ink tracking-[-0.02em]">
             {categoryInfo ? categoryInfo.title : 'Free Responsive Email Templates'}
           </h1>
-          <p className="text-base text-slate-600 mt-2 max-w-2xl">
+          <p className="text-base text-ink-2 mt-2 max-w-2xl">
             {categoryInfo
               ? categoryInfo.description
               : 'Choose from 20 mobile-ready HTML email templates across 7 categories. Open any template in the visual editor and export clean table HTML for free.'}
@@ -60,10 +60,10 @@ export const TemplatesGalleryPage: React.FC<TemplatesGalleryPageProps> = ({
         <button
           type="button"
           onClick={onStartBuilding}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold shrink-0 cursor-pointer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] bg-accent hover:bg-accent-2 text-accent-ink font-display text-sm font-medium shrink-0 cursor-pointer transition-colors"
         >
           <span>Start Blank Email</span>
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-4 h-4" aria-hidden="true" />
         </button>
       </div>
 
@@ -76,10 +76,10 @@ export const TemplatesGalleryPage: React.FC<TemplatesGalleryPageProps> = ({
               e.preventDefault();
               onNavigate('/templates/');
             }}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+            className={`px-3.5 py-1.5 rounded-[2px] text-xs font-display font-medium transition-colors ${
               !categorySlug
-                ? 'bg-indigo-600 text-white'
-                : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-300'
+                ? 'bg-ink text-sheet'
+                : 'bg-sheet border border-rule text-ink-2 hover:border-ink'
             }`}
           >
             All ({TEMPLATES.length})
@@ -92,10 +92,10 @@ export const TemplatesGalleryPage: React.FC<TemplatesGalleryPageProps> = ({
                 e.preventDefault();
                 onNavigate(`/templates/${cat.slug}/`);
               }}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`px-3.5 py-1.5 rounded-[2px] text-xs font-display font-medium transition-colors ${
                 categorySlug === cat.slug
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-300'
+                  ? 'bg-accent text-accent-ink'
+                  : 'bg-sheet border border-rule text-ink-2 hover:border-ink'
               }`}
             >
               {cat.name}
@@ -104,25 +104,29 @@ export const TemplatesGalleryPage: React.FC<TemplatesGalleryPageProps> = ({
         </div>
 
         <div className="relative w-full lg:w-64">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search
+            className="w-4 h-4 text-muted absolute left-3 top-1/2 -translate-y-1/2"
+            aria-hidden="true"
+          />
           <input
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search templates..."
-            className="w-full pl-9 pr-3 py-2 text-sm bg-white border border-slate-200 rounded-xl focus:border-indigo-500 outline-none"
+            aria-label="Search templates"
+            className="w-full pl-9 pr-3 py-2 text-sm bg-sheet border border-muted rounded-[2px] text-ink focus:border-accent outline-none"
           />
         </div>
       </div>
 
       {/* Grid */}
       {filteredTemplates.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">
-          <p className="text-slate-600 font-medium">No templates matched your search.</p>
+        <div className="bg-sheet border-t-2 border-ink border-x border-b border-rule p-12 text-center">
+          <p className="text-ink-2 font-medium">No templates matched your search.</p>
           <button
             type="button"
             onClick={() => setQuery('')}
-            className="mt-3 text-sm font-semibold text-indigo-600 hover:underline"
+            className="mt-3 text-sm font-display font-medium text-accent hover:underline cursor-pointer"
           >
             Clear search
           </button>
