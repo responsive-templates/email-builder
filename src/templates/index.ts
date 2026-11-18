@@ -23,42 +23,42 @@ export const TEMPLATE_CATEGORIES: TemplateCategoryInfo[] = [
     slug: 'welcome-email',
     title: 'Free Welcome Email Templates',
     description:
-      'High-converting onboarding and welcome email templates for SaaS, communities, and creators. Edit with drag & drop and export HTML.',
+      'Onboarding and welcome email templates for SaaS, communities, and creators. Edit with drag and drop and export HTML.',
   },
   {
     name: 'Promotional Email',
     slug: 'promotional-email',
     title: 'Free Promotional Email Templates',
     description:
-      'Eye-catching promotional email templates for product launches, flash sales, and VIP offers. Mobile-ready table HTML output.',
+      'Promotional email templates for product launches, flash sales, and VIP offers with mobile-ready table HTML output.',
   },
   {
     name: 'Black Friday / Sale',
     slug: 'black-friday-email',
-    title: 'Free Black Friday & Sale Email Templates',
+    title: 'Free Black Friday and Sale Email Templates',
     description:
-      'High-contrast Black Friday, Cyber Monday, and holiday clearance email templates built for maximum click-through rates.',
+      'High-contrast Black Friday, Cyber Monday, and holiday clearance email templates ready to edit and export.',
   },
   {
     name: 'Ecommerce',
     slug: 'ecommerce',
     title: 'Free Ecommerce Email Templates',
     description:
-      'Order confirmations, abandoned cart reminders, and back-in-stock alerts with clean responsive layouts.',
+      'Order confirmations, abandoned cart reminders, and back-in-stock alerts with responsive table layouts.',
   },
   {
     name: 'Transactional Email',
     slug: 'transactional-email',
     title: 'Free Transactional Email Templates',
     description:
-      'Reliable password reset, invoice receipt, and account verification email templates compatible with all major email clients.',
+      'Password reset, invoice receipt, and account verification email templates compatible with major email clients.',
   },
   {
     name: 'Event Invitation',
     slug: 'event-invitation',
     title: 'Free Event Invitation Email Templates',
     description:
-      'Webinar, conference, and keynote invitation templates with clear event details and RSVP buttons.',
+      'Webinar, conference, and keynote invitation templates with event details and RSVP buttons.',
   },
 ];
 

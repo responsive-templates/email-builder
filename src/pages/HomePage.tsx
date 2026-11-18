@@ -17,7 +17,7 @@ const SPEC_ROWS = [
     spec: 'Markup engine',
     output: 'XHTML 1.0 Transitional role="presentation" tables',
     metric: '100%',
-    note: 'Never fragile web flexbox',
+    note: 'Built without web flexbox',
   },
   {
     spec: 'CSS delivery',
